@@ -1,4 +1,5 @@
 import productsModel from '../models/productsModel';
+import productValidation from './validations/validationInputValues';
 
 interface IProductModel {
   id: number,
@@ -10,6 +11,13 @@ type IProduct = Omit <IProductModel, 'id'>;
 
 const create = async (product: IProduct) => {
   const { name, amount } = product;
+
+  const checkName = productValidation.productValidation(name, 'name');
+  if (checkName.type) return checkName;
+
+  const checkAmount = productValidation.productValidation(amount, 'amount');
+  if (checkAmount.type) return checkAmount;
+
   const productId = await productsModel.create(product);
   const responseObject = { id: productId, name, amount }; 
   return { type: null, message: responseObject };
