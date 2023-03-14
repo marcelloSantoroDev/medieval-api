@@ -15,4 +15,9 @@ const create = async (product: IProduct) => {
   return { type: null, message: responseObject };
 };
 
-export default { create };
+const getAll = async () => {
+  const products = await productsModel.getAll();
+  return { type: null, message: products };
+};
+
+export default { create, getAll };
