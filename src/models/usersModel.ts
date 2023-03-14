@@ -5,7 +5,7 @@ interface IUserModel {
   id: number,
   username: string,
   vocation: string,
-  level: string,
+  level: number,
   password: string
 }
 

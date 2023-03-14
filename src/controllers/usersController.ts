@@ -4,7 +4,9 @@ import tokenGenerator from '../utils/tokenGenerator';
 
 const create = async (req: Request, res: Response) => {
   const { username, vocation, level, password } = req.body;
-  await usersService.create({ username, vocation, level, password });
+  const { type, message } = await usersService.create({ username, vocation, level, password });
+  if (type === 'NOT_FOUND') return res.status(400).json({ message });
+  if (type === 'INVALID') return res.status(422).json({ message });
   const token = tokenGenerator(username);
   return res.status(201).json({ token });
 };
