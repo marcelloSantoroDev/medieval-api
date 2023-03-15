@@ -67,6 +67,11 @@ interface IOrderServicesReturnFormat {
   message: IOrdersResponse[] | IOrderModel | string
 }
 
+interface IProductsServicesReturnFormat {
+  type: string | null,
+  message: IProductModel | string | IAllProductsResponse[]
+}
+
 export {
   IUserModel,
   TUser,
@@ -82,4 +87,5 @@ export {
   IToken,
   IValidationsReturnFormat,
   IOrderServicesReturnFormat,
+  IProductsServicesReturnFormat,
 };
