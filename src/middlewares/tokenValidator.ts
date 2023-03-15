@@ -1,10 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import usersModel from '../models/usersModel';
+import { IErrorJson } from '../utils/interfaces';
 
 const secret = process.env.JWT_SECRET || 'batatinha';
 
-const tokenValidator = async (req: Request, res: Response, next: NextFunction) => {
+const tokenValidator = async (req: Request, res: Response, next: NextFunction)
+: Promise<Response<IErrorJson> | undefined> => {
   const token = req.header('Authorization');
 
   if (!token) {
