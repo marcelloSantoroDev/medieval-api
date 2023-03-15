@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import usersModel from '../models/usersModel';
 
-const secret = process.env.JWT_SECRET;
+const secret = process.env.JWT_SECRET || 'batatinha';
 
 const tokenValidator = async (req: Request, res: Response, next: NextFunction) => {
   const token = req.header('Authorization');
@@ -12,10 +12,10 @@ const tokenValidator = async (req: Request, res: Response, next: NextFunction) =
   }
 
   try {
-    const { data } = jwt.verify(token, secret);
+    const { data } = jwt.verify(token, secret) as JwtPayload;
     const user = await usersModel.loginUser(data);
 
-    req.user = user;
+    req.body.user = user;
     
     next();
   } catch (error) {
