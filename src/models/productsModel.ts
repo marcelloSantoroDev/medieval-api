@@ -1,13 +1,6 @@
 import { ResultSetHeader } from 'mysql2';
 import connection from './connection';
-
-interface IProductModel {
-  id: number,
-  name: string,
-  amount: string
-}
-
-type IProduct = Omit <IProductModel, 'id'>;
+import { IProduct } from '../utils/interfaces';
 
 const create = async (product: IProduct) => {
   const { name, amount } = product;

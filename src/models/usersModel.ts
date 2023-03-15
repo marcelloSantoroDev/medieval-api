@@ -1,15 +1,6 @@
 import { RowDataPacket } from 'mysql2';
 import connection from './connection';
-
-interface IUserModel {
-  id: number,
-  username: string,
-  vocation: string,
-  level: number,
-  password: string
-}
-
-type IUser = Omit <IUserModel, 'id'>;
+import { IUser, IUserModel, ILogin } from '../utils/interfaces';
 
 const create = async (user: IUser) => {
   const { username, vocation, level, password } = user;
@@ -17,11 +8,6 @@ const create = async (user: IUser) => {
   Trybesmith.users (username, vocation, level, password) VALUES (?,?,?,?)`;
   connection.execute(query, [username, vocation, level, password]);
 };
-
-interface ILogin {
-  username: string,
-  password: string
-}
 
 const loginUser = async (user: ILogin): Promise<IUserModel> => {
   const { username } = user; 

@@ -1,4 +1,4 @@
-const firstValidations = (input: string, str: string) => {
+const nameAmountAndVocationValidations = (input: string, str: string) => {
   if (!input) return { type: 'NOT_FOUND', message: `"${str}" is required` };
 
   if (typeof input !== 'string') return { type: 'INVALID', message: `"${str}" must be a string` };
@@ -34,4 +34,4 @@ const passwordValidations = (input: string, str: string) => {
   return { type: null, message: '' };
 };
 
-export default { firstValidations, levelValidations, passwordValidations };
+export default { nameAmountAndVocationValidations, levelValidations, passwordValidations };
