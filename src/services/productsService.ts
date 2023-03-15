@@ -1,8 +1,8 @@
 import productsModel from '../models/productsModel';
 import inputsValidation from './validations/validationInputValues';
-import { IProduct } from '../utils/interfaces';
+import { TProduct } from '../utils/interfaces';
 
-const create = async (product: IProduct) => {
+const create = async (product: TProduct) => {
   const { name, amount } = product;
 
   const checkName = inputsValidation.nameAmountAndVocationValidations(name, 'name');

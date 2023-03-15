@@ -1,8 +1,8 @@
 import { ResultSetHeader } from 'mysql2';
 import connection from './connection';
-import { IProduct, IRequestOrder } from '../utils/interfaces';
+import { TProduct, IRequestOrder } from '../utils/interfaces';
 
-const create = async (product: IProduct) => {
+const create = async (product: TProduct) => {
   const { name, amount } = product;
   const query = 'INSERT INTO Trybesmith.products (name, amount) VALUES (?,?)';
   const [{ insertId }] = await connection.execute<ResultSetHeader>(query, [name, amount]);

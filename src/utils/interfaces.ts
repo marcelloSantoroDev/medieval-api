@@ -6,7 +6,7 @@ interface IUserModel {
   password: string
 }
 
-type IUser = Omit <IUserModel, 'id'>;
+type TUser = Omit <IUserModel, 'id'>;
 
 interface ILogin {
   username: string,
@@ -19,7 +19,7 @@ interface IProductModel {
   amount: string
 }
 
-type IProduct = Omit <IProductModel, 'id'>;
+type TProduct = Omit <IProductModel, 'id'>;
 
 interface IOrderModel {
   userId: number,
@@ -36,4 +36,4 @@ interface IRequestOrder {
   orderId: number,
 }
 
-export { IUserModel, IUser, ILogin, IProductModel, IProduct, IOrderModel, IOrder, IRequestOrder };
+export { IUserModel, TUser, ILogin, IProductModel, TProduct, IOrderModel, IOrder, IRequestOrder };

@@ -1,8 +1,8 @@
 import usersModel from '../models/usersModel';
 import utilitaryFunctions from '../utils/utilitaryFunctions';
-import { IUser, ILogin } from '../utils/interfaces';
+import { TUser, ILogin } from '../utils/interfaces';
 
-const create = async (user: IUser) => {
+const create = async (user: TUser) => {
   const { username, vocation, level, password } = user;
 
   const userValidations = utilitaryFunctions

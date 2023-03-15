@@ -1,8 +1,8 @@
 import { RowDataPacket } from 'mysql2';
 import connection from './connection';
-import { IUser, IUserModel, ILogin } from '../utils/interfaces';
+import { TUser, IUserModel, ILogin } from '../utils/interfaces';
 
-const create = async (user: IUser) => {
+const create = async (user: TUser) => {
   const { username, vocation, level, password } = user;
   const query = `INSERT INTO
   Trybesmith.users (username, vocation, level, password) VALUES (?,?,?,?)`;
