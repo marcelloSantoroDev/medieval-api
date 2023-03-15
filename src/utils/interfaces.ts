@@ -31,4 +31,9 @@ interface IOrder {
   productsIds: number[];
 }
 
-export { IUserModel, IUser, ILogin, IProductModel, IProduct, IOrderModel, IOrder };
+interface IRequestOrder {
+  productId: number,
+  orderId: number,
+}
+
+export { IUserModel, IUser, ILogin, IProductModel, IProduct, IOrderModel, IOrder, IRequestOrder };

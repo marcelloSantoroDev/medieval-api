@@ -1,11 +1,6 @@
 import { ResultSetHeader } from 'mysql2';
 import connection from './connection';
-import { IProduct } from '../utils/interfaces';
-
-interface IRequestOrder {
-  productId: number,
-  orderId: number,
-}
+import { IProduct, IRequestOrder } from '../utils/interfaces';
 
 const create = async (product: IProduct) => {
   const { name, amount } = product;
