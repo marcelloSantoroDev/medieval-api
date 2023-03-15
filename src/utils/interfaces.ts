@@ -67,7 +67,7 @@ interface IOrderServicesReturnFormat {
   message: IOrdersResponse[] | IOrderModel | string
 }
 
-interface IProductsServicesReturnFormat {
+interface IProductsAndUsersServicesReturnFormat {
   type: string | null,
   message: IProductModel | string | IAllProductsResponse[]
 }
@@ -87,5 +87,5 @@ export {
   IToken,
   IValidationsReturnFormat,
   IOrderServicesReturnFormat,
-  IProductsServicesReturnFormat,
+  IProductsAndUsersServicesReturnFormat,
 };

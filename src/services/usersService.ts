@@ -1,8 +1,9 @@
 import usersModel from '../models/usersModel';
 import utilitaryFunctions from '../utils/utilitaryFunctions';
-import { TUser, ILogin } from '../utils/interfaces';
+import { TUser, ILogin, IProductsAndUsersServicesReturnFormat } from '../utils/interfaces';
 
-const create = async (user: TUser) => {
+const create = async (user: TUser)
+: Promise<IProductsAndUsersServicesReturnFormat> => {
   const { username, vocation, level, password } = user;
 
   const userValidations = utilitaryFunctions
@@ -15,7 +16,8 @@ const create = async (user: TUser) => {
   return { type: null, message: '' };
 };
 
-const login = async (user: ILogin) => {
+const login = async (user: ILogin)
+: Promise<IProductsAndUsersServicesReturnFormat> => {
   const { username, password } = user;
   
   if (!username) return { type: 'NOT_FOUND', message: '"username" is required' };
