@@ -1,7 +1,7 @@
 import inputsValidation from '../services/validations/validationInputValues';
-import { TUser } from './interfaces';
+import { TUser, IValidationsReturnFormat } from './interfaces';
 
-const checkIfItsPossibleToCreateUser = (user: TUser) => {
+const checkIfItsPossibleToCreateUser = (user: TUser): IValidationsReturnFormat => {
   const { username, vocation, level, password } = user;
 
   const checkUsername = inputsValidation.nameAmountAndVocationValidations(username, 'username');

@@ -1,9 +1,13 @@
 import productsModel from '../models/productsModel';
 import inputsValidation from './validations/validationInputValues';
-import { TProduct, IProductsServicesReturnFormat, IProductModel } from '../utils/interfaces';
+import {
+  TProduct,
+  IProductsAndUsersServicesReturnFormat,
+  IProductModel,
+} from '../utils/interfaces';
 
 const create = async (product: TProduct)
-: Promise<IProductsServicesReturnFormat> => {
+: Promise<IProductsAndUsersServicesReturnFormat> => {
   const { name, amount } = product;
 
   const checkName = inputsValidation.nameAmountAndVocationValidations(name, 'name');
@@ -20,7 +24,7 @@ const create = async (product: TProduct)
 };
 
 const getAll = async ()
-: Promise<IProductsServicesReturnFormat> => {
+: Promise<IProductsAndUsersServicesReturnFormat> => {
   const products = await productsModel.getAll();
   return { type: null, message: products };
 };

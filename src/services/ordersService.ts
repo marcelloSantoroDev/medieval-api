@@ -6,7 +6,6 @@ import validationInputValues from './validations/validationInputValues';
 const getAll = async ()
 : Promise<IOrderServicesReturnFormat> => {
   const orders = await ordersModel.getAll();
-  console.log(orders);
   
   return { type: null, message: orders };
 };
