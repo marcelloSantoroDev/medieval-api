@@ -21,4 +21,14 @@ interface IProductModel {
 
 type IProduct = Omit <IProductModel, 'id'>;
 
-export { IUserModel, IUser, ILogin, IProductModel, IProduct };
+interface IOrderModel {
+  userId: number,
+  productsId: number[]
+}
+
+interface IOrder {
+  user: IUserModel;
+  productsIds: number[];
+}
+
+export { IUserModel, IUser, ILogin, IProductModel, IProduct, IOrderModel, IOrder };

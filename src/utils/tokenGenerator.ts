@@ -7,12 +7,6 @@ const jwtConfig: SignOptions = {
   algorithm: 'HS256',
 };
 
-const tokenGenerator = (user: string) => {
-  jwt.sign({ data: user }, secret, jwtConfig);
-};
+const tokenGenerator = (user: string) => jwt.sign({ data: user }, secret, jwtConfig);
 
 export default tokenGenerator;
-
-// if(!process.env.JWT_KEY){
-//   throw new Error('JWT_KEY must be defined')
-// }

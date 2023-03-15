@@ -1,3 +1,5 @@
+import { ResultSetHeader } from 'mysql2';
+import { IOrder } from '../utils/interfaces';
 import connection from './connection';
 
 const getAll = async () => {
@@ -12,4 +14,11 @@ GROUP BY o.id;
   return result;
 };
 
-export default { getAll };
+const create = async (order: IOrder) => {
+  const { user } = order;
+  const query = 'INSERT INTO Trybesmith.orders (user_id) VALUES (?)';
+  const [{ insertId }] = await connection.execute<ResultSetHeader>(query, [user.id]);
+  return insertId;
+};
+
+export default { getAll, create };

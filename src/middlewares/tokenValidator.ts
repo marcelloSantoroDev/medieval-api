@@ -13,10 +13,14 @@ const tokenValidator = async (req: Request, res: Response, next: NextFunction) =
 
   try {
     const { data } = jwt.verify(token, secret) as JwtPayload;
-    const user = await usersModel.loginUser(data);
+    const user = await usersModel.loginUser({ username: data, password: '' });
 
-    req.body.user = user;
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
     
+    req.body.user = user;
+
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Invalid token' });

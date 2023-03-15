@@ -11,8 +11,9 @@ const create = async (req: Request, res: Response) => {
   return res.status(201).json(message);
 };
 
-const getAll = async (_req: Request, res: Response) => {
+const getAll = async (req: Request, res: Response) => {
   const { message } = await productsService.getAll();
+
   return res.status(200).json(message);
 };
 

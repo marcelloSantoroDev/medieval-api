@@ -1,3 +1,5 @@
+import { IOrder } from '../../utils/interfaces';
+
 const nameAmountAndVocationValidations = (input: string, str: string) => {
   if (!input) return { type: 'NOT_FOUND', message: `"${str}" is required` };
 
@@ -34,4 +36,27 @@ const passwordValidations = (input: string, str: string) => {
   return { type: null, message: '' };
 };
 
-export default { nameAmountAndVocationValidations, levelValidations, passwordValidations };
+const createOrdersValidation = (order: IOrder) => {
+  const { productsIds } = order;
+
+  if (!productsIds) {
+    return { type: 'NOT_FOUND', message: '"productsIds" is required' };
+  }
+
+  if (!Array.isArray(productsIds)) {
+    return { type: 'INVALID', message: '"productsIds" must be an array' };
+  }
+
+  if (productsIds.length === 0) {
+    return { type: 'INVALID', message: '"productsIds" must include only numbers' };
+  }
+
+  return { type: null, message: '' };
+};
+
+export default {
+  nameAmountAndVocationValidations,
+  levelValidations,
+  passwordValidations,
+  createOrdersValidation,
+};
