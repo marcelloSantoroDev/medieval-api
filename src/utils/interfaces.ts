@@ -1,3 +1,4 @@
+// USERS
 interface IUserModel {
   id: number,
   username: string,
@@ -8,11 +9,18 @@ interface IUserModel {
 
 type TUser = Omit <IUserModel, 'id'>;
 
+interface IProductsAndUsersServicesReturnFormat {
+  type: string | null,
+  message: IProductModel | string | IAllProductsResponse[]
+}
+
+// LOGIN
 interface ILogin {
   username: string,
   password: string
 }
 
+// PRODUCTS
 interface IProductModel {
   id: number,
   name: string,
@@ -21,7 +29,21 @@ interface IProductModel {
 
 type TProduct = Omit <IProductModel, 'id'>;
 
-interface IOrderModel {
+interface IAllProductsResponse {
+  id: number,
+  name: string,
+  amount: string,
+  orderId: number | null
+}
+
+// ORDERS
+interface IOrderControllerResponse {
+  userId: number,
+  productsIds: number[]
+}
+
+interface IAllOrdersControllerResponse {
+  id: number,
   userId: number,
   productsIds: number[]
 }
@@ -36,40 +58,25 @@ interface IRequestOrder {
   orderId: number,
 }
 
+interface IOrderServicesReturnFormat {
+  type: string | null,
+  message: IOrderControllerResponse | IOrderControllerResponse[] | string
+}
+
+// ERRORS
 interface IErrorJson {
   message: string
 }
 
-interface IOrdersResponse {
-  id: number,
-  userId: number,
-  productsIds: number[]
-}
-
-interface IAllProductsResponse {
-  id: number,
-  name: string,
-  amount: string,
-  orderId: number | null
-}
-
+// TOKEN
 interface IToken {
   token: string
 }
 
+// VALIDATIONS
 interface IValidationsReturnFormat {
   type: string | null,
   message: string
-}
-
-interface IOrderServicesReturnFormat {
-  type: string | null,
-  message: IOrdersResponse[] | IOrderModel | string
-}
-
-interface IProductsAndUsersServicesReturnFormat {
-  type: string | null,
-  message: IProductModel | string | IAllProductsResponse[]
 }
 
 export {
@@ -78,11 +85,11 @@ export {
   ILogin,
   IProductModel,
   TProduct,
-  IOrderModel,
+  IAllOrdersControllerResponse,
   IOrder,
   IRequestOrder,
   IErrorJson,
-  IOrdersResponse,
+  IOrderControllerResponse,
   IAllProductsResponse,
   IToken,
   IValidationsReturnFormat,
