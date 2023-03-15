@@ -53,6 +53,10 @@ interface IAllProductsResponse {
   orderId: number | null
 }
 
+interface IToken {
+  token: string
+}
+
 export {
   IUserModel,
   TUser,
@@ -65,4 +69,5 @@ export {
   IErrorJson,
   IOrdersResponse,
   IAllProductsResponse,
+  IToken,
 };

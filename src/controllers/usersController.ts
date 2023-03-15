@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
 import usersService from '../services/usersService';
 import tokenGenerator from '../utils/tokenGenerator';
+import { IToken } from '../utils/interfaces';
 
-const create = async (req: Request, res: Response) => {
+const create = async (req: Request, res: Response)
+: Promise<Response<IToken>> => {
   const { username, vocation, level, password } = req.body;
   const { type, message } = await usersService.create({ username, vocation, level, password });
 
@@ -14,7 +16,8 @@ const create = async (req: Request, res: Response) => {
   return res.status(201).json({ token });
 };
 
-const login = async (req: Request, res: Response) => {
+const login = async (req: Request, res: Response)
+: Promise<Response<IToken>> => {
   const { username, password } = req.body;
   const { type, message } = await usersService.login({ username, password });
 
