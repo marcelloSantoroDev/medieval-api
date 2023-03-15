@@ -2,7 +2,8 @@ import { ResultSetHeader } from 'mysql2';
 import { IOrder, IOrdersResponse } from '../utils/interfaces';
 import connection from './connection';
 
-const getAll = async (): Promise<IOrdersResponse[]> => {
+const getAll = async ()
+: Promise<IOrdersResponse[]> => {
   const query = `
 SELECT o.id, o.user_id as userId, JSON_ARRAYAGG(p.id) as productsIds
 FROM Trybesmith.orders as o
@@ -15,7 +16,8 @@ GROUP BY o.id;
   return result;
 };
 
-const create = async (order: IOrder): Promise<number> => {
+const create = async (order: IOrder)
+: Promise<number> => {
   const { user } = order;
   const query = 'INSERT INTO Trybesmith.orders (user_id) VALUES (?)';
   const [{ insertId }] = await connection.execute<ResultSetHeader>(query, [user.id]);
