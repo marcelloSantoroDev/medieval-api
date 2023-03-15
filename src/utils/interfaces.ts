@@ -23,7 +23,7 @@ type TProduct = Omit <IProductModel, 'id'>;
 
 interface IOrderModel {
   userId: number,
-  productsId: number[]
+  productsIds: number[]
 }
 
 interface IOrder {
@@ -62,6 +62,11 @@ interface IValidationsReturnFormat {
   message: string
 }
 
+interface IOrderServicesReturnFormat {
+  type: string | null,
+  message: IOrdersResponse[] | IOrderModel | string
+}
+
 export {
   IUserModel,
   TUser,
@@ -76,4 +81,5 @@ export {
   IAllProductsResponse,
   IToken,
   IValidationsReturnFormat,
+  IOrderServicesReturnFormat,
 };

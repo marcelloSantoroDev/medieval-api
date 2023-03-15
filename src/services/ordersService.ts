@@ -1,14 +1,18 @@
 import ordersModel from '../models/ordersModel';
 import productsModel from '../models/productsModel';
-import { IOrder } from '../utils/interfaces';
+import { IOrder, IOrderServicesReturnFormat } from '../utils/interfaces';
 import validationInputValues from './validations/validationInputValues';
 
-const getAll = async () => {
+const getAll = async ()
+: Promise<IOrderServicesReturnFormat> => {
   const orders = await ordersModel.getAll();
+  console.log(orders);
+  
   return { type: null, message: orders };
 };
 
-const create = async (order: IOrder) => {
+const create = async (order: IOrder)
+: Promise<IOrderServicesReturnFormat> => {
   const { user, productsIds } = order;
 
   const checkProductsIds = validationInputValues.createOrdersValidation(order);
