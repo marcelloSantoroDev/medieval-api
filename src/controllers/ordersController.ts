@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
 import ordersService from '../services/ordersService';
-import { IProductModel, IErrorJson } from '../utils/interfaces';
+import { IErrorJson, IOrdersResponse, IOrderModel } from '../utils/interfaces';
 
-const getAll = async (_req: Request, res: Response): Promise<Response<IProductModel[]>> => {
+const getAll = async (_req: Request, res: Response)
+: Promise<Response<IOrdersResponse[]>> => {
   const { message } = await ordersService.getAll();
 
   return res.status(200).json(message);
 };
 
 const create = async (req: Request, res: Response)
-: Promise< Response<IProductModel | IErrorJson>> => {
+: Promise< Response<IOrderModel | IErrorJson>> => {
   const { productsIds, user } = req.body;
   const { type, message } = await ordersService.create({ productsIds, user });
 

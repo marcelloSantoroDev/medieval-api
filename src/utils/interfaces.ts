@@ -40,6 +40,19 @@ interface IErrorJson {
   message: string
 }
 
+interface IOrdersResponse {
+  id: number,
+  userId: number,
+  productsIds: number[]
+}
+
+interface IAllProductsResponse {
+  id: number,
+  name: string,
+  amount: string,
+  orderId: number | null
+}
+
 export {
   IUserModel,
   TUser,
@@ -50,4 +63,6 @@ export {
   IOrder,
   IRequestOrder,
   IErrorJson,
+  IOrdersResponse,
+  IAllProductsResponse,
 };
