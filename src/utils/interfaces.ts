@@ -57,6 +57,11 @@ interface IToken {
   token: string
 }
 
+interface IValidationsReturnFormat {
+  type: string | null,
+  message: string
+}
+
 export {
   IUserModel,
   TUser,
@@ -70,4 +75,5 @@ export {
   IOrdersResponse,
   IAllProductsResponse,
   IToken,
+  IValidationsReturnFormat,
 };

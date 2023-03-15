@@ -1,6 +1,7 @@
-import { IOrder } from '../../utils/interfaces';
+import { IOrder, IValidationsReturnFormat } from '../../utils/interfaces';
 
-const nameAmountAndVocationValidations = (input: string, str: string) => {
+const nameAmountAndVocationValidations = (input: string, str: string)
+: IValidationsReturnFormat => {
   if (!input) return { type: 'NOT_FOUND', message: `"${str}" is required` };
 
   if (typeof input !== 'string') return { type: 'INVALID', message: `"${str}" must be a string` };
@@ -12,7 +13,8 @@ const nameAmountAndVocationValidations = (input: string, str: string) => {
   return { type: null, message: '' };
 };
 
-const levelValidations = (input: number, str: string) => {
+const levelValidations = (input: number, str: string)
+: IValidationsReturnFormat => {
   if (input === undefined) return { type: 'NOT_FOUND', message: `"${str}" is required` };
 
   if (typeof input !== 'number') return { type: 'INVALID', message: `"${str}" must be a number` };
@@ -24,7 +26,8 @@ const levelValidations = (input: number, str: string) => {
   return { type: null, message: '' };
 };
 
-const passwordValidations = (input: string, str: string) => {
+const passwordValidations = (input: string, str: string)
+: IValidationsReturnFormat => {
   if (!input) return { type: 'NOT_FOUND', message: `"${str}" is required` };
 
   if (typeof input !== 'string') return { type: 'INVALID', message: `"${str}" must be a string` };
@@ -36,7 +39,8 @@ const passwordValidations = (input: string, str: string) => {
   return { type: null, message: '' };
 };
 
-const createOrdersValidation = (order: IOrder) => {
+const createOrdersValidation = (order: IOrder)
+: IValidationsReturnFormat => {
   const { productsIds } = order;
 
   if (!productsIds) {
