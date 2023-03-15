@@ -36,4 +36,18 @@ interface IRequestOrder {
   orderId: number,
 }
 
-export { IUserModel, TUser, ILogin, IProductModel, TProduct, IOrderModel, IOrder, IRequestOrder };
+interface IErrorJson {
+  message: string
+}
+
+export {
+  IUserModel,
+  TUser,
+  ILogin,
+  IProductModel,
+  TProduct,
+  IOrderModel,
+  IOrder,
+  IRequestOrder,
+  IErrorJson,
+};
