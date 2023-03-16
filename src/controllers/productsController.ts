@@ -1,23 +1,29 @@
 import { Request, Response } from 'express';
-import productsService from '../services/productsService';
 import { IProductModel, IErrorJson, IAllProductsResponse } from '../utils/interfaces';
+import ProductsService from '../services/productsService';
 
-const create = async (req: Request, res: Response)
-: Promise<Response<IProductModel | IErrorJson>> => {
-  const { name, amount } = req.body;
-  const { type, message } = await productsService.create({ name, amount });
+export default class ProductsController {
+  private ProductsService: ProductsService;
 
-  if (type === 'NOT_FOUND') return res.status(400).json({ message });
-  if (type === 'INVALID') return res.status(422).json({ message });
+  constructor() {
+    this.ProductsService = new ProductsService();
+  }
+
+  public create = async (req: Request, res: Response)
+  : Promise<Response<IProductModel | IErrorJson>> => {
+    const { name, amount } = req.body;
+    const { type, message } = await this.ProductsService.create({ name, amount });
+
+    if (type === 'NOT_FOUND') return res.status(400).json({ message });
+    if (type === 'INVALID') return res.status(422).json({ message });
   
-  return res.status(201).json(message);
-};
+    return res.status(201).json(message);
+  };
 
-const getAll = async (req: Request, res: Response)
-: Promise<Response<IAllProductsResponse[]>> => {
-  const { message } = await productsService.getAll();
+  public getAll = async (req: Request, res: Response)
+  : Promise<Response<IAllProductsResponse[]>> => {
+    const { message } = await this.ProductsService.getAll();
 
-  return res.status(200).json(message);
-};
-
-export default { create, getAll };
+    return res.status(200).json(message);
+  };
+}

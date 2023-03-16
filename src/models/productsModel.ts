@@ -1,28 +1,31 @@
-import { ResultSetHeader } from 'mysql2';
-import connection from './connection';
-import { TProduct, IRequestOrder, IAllProductsResponse } from '../utils/interfaces';
+import { Pool, ResultSetHeader } from 'mysql2/promise';
+import { TProduct, IAllProductsResponse, IRequestOrder } from '../utils/interfaces';
 
-const create = async (product: TProduct)
-: Promise<number> => {
-  const { name, amount } = product;
-  const query = 'INSERT INTO Trybesmith.products (name, amount) VALUES (?,?)';
-  const [{ insertId }] = await connection.execute<ResultSetHeader>(query, [name, amount]);
-  return insertId;
-};
+export default class ProductsModel {
+  constructor(readonly connection: Pool) {
+    this.connection = connection;
+  }
 
-const getAll = async (): Promise<IAllProductsResponse[]> => {
-  const query = 'SELECT * FROM Trybesmith.products';
-  const [result] = await connection.execute<ResultSetHeader & IAllProductsResponse[]>(query);
-  return result;
-};
+  public create = async (product: TProduct)
+  : Promise<number> => {
+    const { name, amount } = product;
+    const query = 'INSERT INTO Trybesmith.products (name, amount) VALUES (?,?)';
+    const [{ insertId }] = await this.connection.execute<ResultSetHeader>(query, [name, amount]);
+    return insertId;
+  };
 
-const update = async (order: IRequestOrder): Promise<void> => {
-  const { productId, orderId } = order;
-  const query = `UPDATE Trybesmith.products
+  public getAll = async (): Promise<IAllProductsResponse[]> => {
+    const query = 'SELECT * FROM Trybesmith.products';
+    const [result] = await this.connection.execute<ResultSetHeader & IAllProductsResponse[]>(query);
+    return result;
+  };
+
+  update = async (order: IRequestOrder): Promise<void> => {
+    const { productId, orderId } = order;
+    const query = `UPDATE Trybesmith.products
   SET order_id = ?
   WHERE id = ?
   `;
-  connection.execute(query, [orderId, productId]);
-};
-
-export default { create, getAll, update };
+    await this.connection.execute(query, [orderId, productId]);
+  };
+}

@@ -1,27 +1,39 @@
-import ordersModel from '../models/ordersModel';
-import productsModel from '../models/productsModel';
+import OrdersModel from '../models/ordersModel';
+import ProductsModel from '../models/productsModel';
+import connection from '../models/connection';
 import { IOrder, IOrderServicesReturnFormat } from '../utils/interfaces';
 import validationInputValues from './validations/validationInputValues';
 
-const getAll = async ()
-: Promise<IOrderServicesReturnFormat> => {
-  const orders = await ordersModel.getAll();
+export default class OrdersService {
+  private OrdersModel: OrdersModel;
+
+  private ProductsModel: ProductsModel;
+
+  constructor() {
+    this.OrdersModel = new OrdersModel(connection);
+    this.ProductsModel = new ProductsModel(connection); 
+  }
+
+  public getAll = async ()
+  : Promise<IOrderServicesReturnFormat> => {
+    const orders = await this.OrdersModel.getAll();
   
-  return { type: null, message: orders };
-};
+    return { type: null, message: orders };
+  };
 
-const create = async (order: IOrder)
-: Promise<IOrderServicesReturnFormat> => {
-  const { user, productsIds } = order;
+  public create = async (order: IOrder)
+  : Promise<IOrderServicesReturnFormat> => {
+    const { user, productsIds } = order;
 
-  const checkProductsIds = validationInputValues.createOrdersValidation(order);
+    const checkProductsIds = validationInputValues.createOrdersValidation(order);
 
-  if (checkProductsIds.type) return checkProductsIds;
+    if (checkProductsIds.type) return checkProductsIds;
 
-  const orderId = await ordersModel.create(order);
-  await Promise.all(productsIds.map((productId) => productsModel.update({ productId, orderId })));
+    const orderId = await this.OrdersModel.create(order);
 
-  return { type: null, message: { userId: user.id, productsIds } };
-};
+    await Promise.all(productsIds.map((productId) => this.ProductsModel
+      .update({ productId, orderId })));
 
-export default { getAll, create };
+    return { type: null, message: { userId: user.id, productsIds } };
+  };
+}

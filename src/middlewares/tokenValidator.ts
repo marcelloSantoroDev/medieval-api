@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import usersModel from '../models/usersModel';
+import usersModel from '../models/functionals/usersModel.functional';
 import { IErrorJson } from '../utils/interfaces';
 
 const secret = process.env.JWT_SECRET || 'batatinha';

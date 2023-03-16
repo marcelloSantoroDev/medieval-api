@@ -1,27 +1,33 @@
 import { Request, Response } from 'express';
-import ordersService from '../services/ordersService';
+import OrdersService from '../services/ordersService';
 import {
   IErrorJson,
   IOrderControllerResponse,
   IAllOrdersControllerResponse,
 } from '../utils/interfaces';
 
-const getAll = async (_req: Request, res: Response)
-: Promise<Response<IAllOrdersControllerResponse[]>> => {
-  const { message } = await ordersService.getAll();
+export default class OrdersController {
+  private OrdersService: OrdersService;
 
-  return res.status(200).json(message);
-};
+  constructor() {
+    this.OrdersService = new OrdersService();
+  }
 
-const create = async (req: Request, res: Response)
-: Promise<Response<IOrderControllerResponse | IErrorJson>> => {
-  const { productsIds, user } = req.body;
-  const { type, message } = await ordersService.create({ productsIds, user });
+  public getAll = async (_req: Request, res: Response)
+  : Promise<Response<IAllOrdersControllerResponse[]>> => {
+    const { message } = await this.OrdersService.getAll();
 
-  if (type === 'NOT_FOUND') return res.status(400).json({ message });
-  if (type === 'INVALID') return res.status(422).json({ message });
+    return res.status(200).json(message);
+  };
 
-  return res.status(201).json(message);
-};
+  public create = async (req: Request, res: Response)
+  : Promise<Response<IOrderControllerResponse | IErrorJson>> => {
+    const { productsIds, user } = req.body;
+    const { type, message } = await this.OrdersService.create({ productsIds, user });
 
-export default { getAll, create };
+    if (type === 'NOT_FOUND') return res.status(400).json({ message });
+    if (type === 'INVALID') return res.status(422).json({ message });
+
+    return res.status(201).json(message);
+  };
+}

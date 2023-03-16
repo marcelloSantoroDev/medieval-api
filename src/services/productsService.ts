@@ -1,32 +1,39 @@
-import productsModel from '../models/productsModel';
+import ProductsModel from '../models/productsModel';
 import inputsValidation from './validations/validationInputValues';
 import {
   TProduct,
   IProductsAndUsersServicesReturnFormat,
   IProductModel,
 } from '../utils/interfaces';
+import connection from '../models/connection';
 
-const create = async (product: TProduct)
-: Promise<IProductsAndUsersServicesReturnFormat> => {
-  const { name, amount } = product;
+export default class ProductsService {
+  private ProductsModel: ProductsModel;
 
-  const checkName = inputsValidation.nameAmountAndVocationValidations(name, 'name');
-  if (checkName.type) return checkName;
+  constructor() {
+    this.ProductsModel = new ProductsModel(connection);
+  }
 
-  const checkAmount = inputsValidation.nameAmountAndVocationValidations(amount, 'amount');
-  if (checkAmount.type) return checkAmount;
+  public create = async (product: TProduct)
+  : Promise<IProductsAndUsersServicesReturnFormat> => {
+    const { name, amount } = product;
 
-  const productId = await productsModel.create(product);
+    const checkName = inputsValidation.nameAmountAndVocationValidations(name, 'name');
+    if (checkName.type) return checkName;
 
-  const responseObject: IProductModel = { id: productId, name, amount }; 
+    const checkAmount = inputsValidation.nameAmountAndVocationValidations(amount, 'amount');
+    if (checkAmount.type) return checkAmount;
 
-  return { type: null, message: responseObject };
-};
+    const productId = await this.ProductsModel.create(product);
 
-const getAll = async ()
-: Promise<IProductsAndUsersServicesReturnFormat> => {
-  const products = await productsModel.getAll();
-  return { type: null, message: products };
-};
+    const responseObject: IProductModel = { id: productId, name, amount }; 
 
-export default { create, getAll };
+    return { type: null, message: responseObject };
+  };
+
+  getAll = async ()
+  : Promise<IProductsAndUsersServicesReturnFormat> => {
+    const products = await this.ProductsModel.getAll();
+    return { type: null, message: products };
+  };
+}
