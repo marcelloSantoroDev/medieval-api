@@ -2,7 +2,7 @@ import OrdersModel from '../models/ordersModel';
 import ProductsModel from '../models/productsModel';
 import connection from '../models/connection';
 import { IOrder, IOrderServicesReturnFormat } from '../utils/interfaces';
-import InputsValidation from './validations/validationInputValues';
+import InputsValidation from './validations/InputsValidation';
 
 export default class OrdersService {
   private OrdersModel: OrdersModel;

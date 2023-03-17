@@ -1,5 +1,5 @@
 import ProductsModel from '../models/productsModel';
-import InputsValidation from './validations/validationInputValues';
+import InputsValidation from './validations/InputsValidation';
 import {
   TProduct,
   IProductsAndUsersServicesReturnFormat,

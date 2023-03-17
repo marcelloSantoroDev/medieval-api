@@ -1,5 +1,5 @@
 import productsModel from '../../models/functionals/productsModel.functional';
-import inputsValidation from '../validations/validationInputValues';
+import InputsValidation from '../validations/InputsValidation';
 import {
   TProduct,
   IProductsAndUsersServicesReturnFormat,
@@ -10,10 +10,11 @@ const create = async (product: TProduct)
 : Promise<IProductsAndUsersServicesReturnFormat> => {
   const { name, amount } = product;
 
-  const checkName = inputsValidation.nameAmountAndVocationValidations(name, 'name');
+  const nameCheck = new InputsValidation(name, 'nome', null);
+  const checkName = nameCheck.nameAmountAndVocationValidations();
   if (checkName.type) return checkName;
-
-  const checkAmount = inputsValidation.nameAmountAndVocationValidations(amount, 'amount');
+  const amountCheck = new InputsValidation(amount, 'amount', null);
+  const checkAmount = amountCheck.nameAmountAndVocationValidations();
   if (checkAmount.type) return checkAmount;
 
   const productId = await productsModel.create(product);

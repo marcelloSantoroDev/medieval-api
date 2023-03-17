@@ -1,15 +1,15 @@
 import usersModel from '../../models/functionals/usersModel.functional';
-import utilitaryFunctions from '../../utils/utilitaryFunctions';
+import UtilitaryFunctions from '../../utils/utilitaryFunctions';
 import { TUser, ILogin, IProductsAndUsersServicesReturnFormat } from '../../utils/interfaces';
 
 const create = async (user: TUser)
 : Promise<IProductsAndUsersServicesReturnFormat> => {
   const { username, vocation, level, password } = user;
 
-  const userValidations = utilitaryFunctions
-    .checkIfItsPossibleToCreateUser({ username, vocation, level, password });
+  const userValidations = new UtilitaryFunctions({ username, vocation, level, password });
+  const validateUser = userValidations.checkIfItsPossibleToCreateUser();
 
-  if (userValidations.type) return userValidations;
+  if (validateUser.type) return validateUser;
   
   await usersModel.create(user);
 

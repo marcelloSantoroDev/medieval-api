@@ -1,7 +1,7 @@
 import ordersModel from '../../models/functionals/ordersModel.functional';
 import productsModel from '../../models/functionals/productsModel.functional';
 import { IOrder, IOrderServicesReturnFormat } from '../../utils/interfaces';
-import validationInputValues from '../validations/validationInputValues';
+import InputsValidation from '../validations/InputsValidation';
 
 const getAll = async ()
 : Promise<IOrderServicesReturnFormat> => {
@@ -14,7 +14,8 @@ const create = async (order: IOrder)
 : Promise<IOrderServicesReturnFormat> => {
   const { user, productsIds } = order;
 
-  const checkProductsIds = validationInputValues.createOrdersValidation(order);
+  const productsIdsCheck = new InputsValidation('', '', order);
+  const checkProductsIds = productsIdsCheck.createOrdersValidation();
 
   if (checkProductsIds.type) return checkProductsIds;
 

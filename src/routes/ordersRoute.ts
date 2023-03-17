@@ -1,5 +1,5 @@
 import express from 'express';
-// import ordersController from '../controllers/ordersController';
+// import ordersController from '../controllers/ordersController.functionals';
 import OrdersController from '../controllers/ordersController';
 import tokenValidator from '../middlewares/tokenValidator';
 

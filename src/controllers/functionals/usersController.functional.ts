@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import usersService from '../../services/functionals/usersService.functional';
-import tokenGenerator from '../../utils/tokenGenerator';
+import TokenGenerator from '../../utils/tokenGenerator';
 import { IToken } from '../../utils/interfaces';
 
 const create = async (req: Request, res: Response)
@@ -11,7 +11,8 @@ const create = async (req: Request, res: Response)
   if (type === 'NOT_FOUND') return res.status(400).json({ message });
   if (type === 'INVALID') return res.status(422).json({ message });
 
-  const token = tokenGenerator(username);
+  const tokenGenerator = new TokenGenerator(username);
+  const token = tokenGenerator.generate();
   
   return res.status(201).json({ token });
 };
@@ -24,8 +25,9 @@ const login = async (req: Request, res: Response)
   if (type === 'NOT_FOUND') return res.status(400).json({ message });
   if (type === 'INVALID') return res.status(401).json({ message });
 
-  const token = tokenGenerator(username);
-
+  const tokenGenerator = new TokenGenerator(username);
+  const token = tokenGenerator.generate();
+  
   return res.status(200).json({ token });
 };
 
