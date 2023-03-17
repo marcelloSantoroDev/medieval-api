@@ -1,6 +1,6 @@
 import { ResultSetHeader } from 'mysql2';
 import { IOrder, IOrderControllerResponse } from '../../utils/interfaces';
-import connection from '../Connection';
+import connection from '../connection';
 
 const getAll = async ()
 : Promise<IOrderControllerResponse[]> => {

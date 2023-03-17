@@ -5,7 +5,7 @@ import {
   IProductsAndUsersServicesReturnFormat,
   IProductModel,
 } from '../utils/interfaces';
-import connection from '../models/Connection';
+import connection from '../models/connection';
 
 export default class ProductsService {
   private ProductsModel: ProductsModel;

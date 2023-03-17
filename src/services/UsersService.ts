@@ -1,7 +1,7 @@
 import UtilitaryFunctions from '../utils/UtilitaryFunctions';
 import { TUser, ILogin, IProductsAndUsersServicesReturnFormat } from '../utils/interfaces';
 import UsersModel from '../models/UsersModel';
-import connection from '../models/Connection';
+import connection from '../models/connection';
 
 export default class {
   private UsersModel: UsersModel;
