@@ -1,13 +1,20 @@
-# :construction: README customizado em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto no qual você pode customizar e reutilizar todas as vezes que for executar o trybe-publisher.
+# README
 
-Para deixá-lo com a sua cara, basta alterar o seguinte arquivo da sua máquina: ~/.student-repo-publisher/custom/_NEW_README.md
+Desenvolvimento de uma API de itens medievais, desenvolvida em TypeScript.
 
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+## Tecnologias utilizadas
+
+O projeto foi desenvolvido em TypeScript, utilizando as bibliotecas Node.js e Express.
+
+## Instruções de uso
+
+Para utilizar a API, siga as seguintes etapas:
+
+1. Clone este repositório em sua máquina local.
+2. Instale as dependências necessárias, utilizando o gerenciador de pacotes `npm` com o comando `npm install`.
+3. Execute o arquivo `index.ts` utilizando o comando `npm run start`.
+4. Faça uma requisição HTTP para o endpoint `localhost:3000/items` para obter a lista completa de itens.
+
+## Autoria
+
+Este projeto foi criado por [Marcello Santoro](https://www.linkedin.com/in/marcello-santoro-dev/).
