@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import TokenGenerator from '../utils/tokenGenerator';
+import TokenGenerator from '../utils/TokenGenerator';
 import { IToken } from '../utils/interfaces';
-import UsersService from '../services/usersService';
+import UsersService from '../services/UsersService';
 
 export default class {
   private UsersService: UsersService;

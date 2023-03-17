@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import usersService from '../../services/functionals/usersService.functional';
-import TokenGenerator from '../../utils/tokenGenerator';
+import TokenGenerator from '../../utils/TokenGenerator';
 import { IToken } from '../../utils/interfaces';
 
 const create = async (req: Request, res: Response)

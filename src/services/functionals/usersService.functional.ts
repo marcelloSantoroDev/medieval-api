@@ -1,5 +1,5 @@
 import usersModel from '../../models/functionals/usersModel.functional';
-import UtilitaryFunctions from '../../utils/utilitaryFunctions';
+import UtilitaryFunctions from '../../utils/UtilitaryFunctions';
 import { TUser, ILogin, IProductsAndUsersServicesReturnFormat } from '../../utils/interfaces';
 
 const create = async (user: TUser)

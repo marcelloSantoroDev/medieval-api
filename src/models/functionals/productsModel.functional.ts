@@ -1,5 +1,5 @@
 import { ResultSetHeader } from 'mysql2';
-import connection from '../connection';
+import connection from '../Connection';
 import { TProduct, IRequestOrder, IAllProductsResponse } from '../../utils/interfaces';
 
 const create = async (product: TProduct)

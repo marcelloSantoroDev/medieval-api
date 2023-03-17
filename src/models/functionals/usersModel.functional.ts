@@ -1,5 +1,5 @@
 import { RowDataPacket } from 'mysql2';
-import connection from '../connection';
+import connection from '../Connection';
 import { TUser, IUserModel, ILogin } from '../../utils/interfaces';
 
 const create = async (user: TUser)

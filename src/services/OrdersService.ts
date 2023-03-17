@@ -1,6 +1,6 @@
-import OrdersModel from '../models/ordersModel';
-import ProductsModel from '../models/productsModel';
-import connection from '../models/connection';
+import OrdersModel from '../models/OrdersModel';
+import ProductsModel from '../models/ProductsModel';
+import connection from '../models/Connection';
 import { IOrder, IOrderServicesReturnFormat } from '../utils/interfaces';
 import InputsValidation from './validations/InputsValidation';
 

@@ -1,7 +1,7 @@
 import express from 'express';
 // import ordersController from '../controllers/ordersController.functionals';
-import OrdersController from '../controllers/ordersController';
-import tokenValidator from '../middlewares/tokenValidator';
+import OrdersController from '../controllers/OrdersController';
+import tokenValidator from '../middlewares/TokenValidator';
 
 const router = express.Router();
 

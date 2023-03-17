@@ -1,11 +1,11 @@
-import ProductsModel from '../models/productsModel';
+import ProductsModel from '../models/ProductsModel';
 import InputsValidation from './validations/InputsValidation';
 import {
   TProduct,
   IProductsAndUsersServicesReturnFormat,
   IProductModel,
 } from '../utils/interfaces';
-import connection from '../models/connection';
+import connection from '../models/Connection';
 
 export default class ProductsService {
   private ProductsModel: ProductsModel;

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import OrdersService from '../services/ordersService';
+import OrdersService from '../services/OrdersService';
 import {
   IErrorJson,
   IOrderControllerResponse,

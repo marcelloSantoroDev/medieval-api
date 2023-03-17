@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { IProductModel, IErrorJson, IAllProductsResponse } from '../utils/interfaces';
-import ProductsService from '../services/productsService';
+import ProductsService from '../services/ProductsService';
 
 export default class ProductsController {
   private ProductsService: ProductsService;
