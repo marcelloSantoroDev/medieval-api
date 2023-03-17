@@ -2,7 +2,7 @@ import OrdersModel from '../models/ordersModel';
 import ProductsModel from '../models/productsModel';
 import connection from '../models/connection';
 import { IOrder, IOrderServicesReturnFormat } from '../utils/interfaces';
-import validationInputValues from './validations/validationInputValues';
+import InputsValidation from './validations/validationInputValues';
 
 export default class OrdersService {
   private OrdersModel: OrdersModel;
@@ -25,7 +25,8 @@ export default class OrdersService {
   : Promise<IOrderServicesReturnFormat> => {
     const { user, productsIds } = order;
 
-    const checkProductsIds = validationInputValues.createOrdersValidation(order);
+    const productsIdsCheck = new InputsValidation('', '', order);
+    const checkProductsIds = productsIdsCheck.createOrdersValidation();
 
     if (checkProductsIds.type) return checkProductsIds;
 

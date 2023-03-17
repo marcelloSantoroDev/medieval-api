@@ -1,5 +1,5 @@
 import ProductsModel from '../models/productsModel';
-import inputsValidation from './validations/validationInputValues';
+import InputsValidation from './validations/validationInputValues';
 import {
   TProduct,
   IProductsAndUsersServicesReturnFormat,
@@ -18,10 +18,12 @@ export default class ProductsService {
   : Promise<IProductsAndUsersServicesReturnFormat> => {
     const { name, amount } = product;
 
-    const checkName = inputsValidation.nameAmountAndVocationValidations(name, 'name');
+    const nameCheck = new InputsValidation(name, 'name', null);
+    const checkName = nameCheck.nameAmountAndVocationValidations();
     if (checkName.type) return checkName;
 
-    const checkAmount = inputsValidation.nameAmountAndVocationValidations(amount, 'amount');
+    const amountCheck = new InputsValidation(amount, 'amount', null);
+    const checkAmount = amountCheck.nameAmountAndVocationValidations();
     if (checkAmount.type) return checkAmount;
 
     const productId = await this.ProductsModel.create(product);

@@ -1,4 +1,4 @@
-import utilitaryFunctions from '../utils/utilitaryFunctions';
+import UtilitaryFunctions from '../utils/utilitaryFunctions';
 import { TUser, ILogin, IProductsAndUsersServicesReturnFormat } from '../utils/interfaces';
 import UsersModel from '../models/usersModel';
 import connection from '../models/connection';
@@ -14,8 +14,9 @@ export default class {
   : Promise<IProductsAndUsersServicesReturnFormat> => {
     const { username, vocation, level, password } = user;
 
+    const utilitaryFunctions = new UtilitaryFunctions({ username, vocation, level, password });
     const userValidations = utilitaryFunctions
-      .checkIfItsPossibleToCreateUser({ username, vocation, level, password });
+      .checkIfItsPossibleToCreateUser();
 
     if (userValidations.type) return userValidations;
   
