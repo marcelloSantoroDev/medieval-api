@@ -1,13 +1,12 @@
 import UtilitaryFunctions from '../utils/UtilitaryFunctions';
 import { TUser, ILogin, IProductsAndUsersServicesReturnFormat } from '../utils/interfaces';
 import UsersModel from '../models/UsersModel';
-import connection from '../models/connection';
 
 export default class {
   private UsersModel: UsersModel;
 
-  constructor() {
-    this.UsersModel = new UsersModel(connection);
+  constructor(usersModel: UsersModel) {
+    this.UsersModel = usersModel;
   }
 
   public create = async (user: TUser)

@@ -6,8 +6,8 @@ import UsersService from '../services/UsersService';
 export default class {
   private UsersService: UsersService;
 
-  constructor() {
-    this.UsersService = new UsersService();
+  constructor(usersService: UsersService) {
+    this.UsersService = usersService;
   }
 
   public create = async (req: Request, res: Response)

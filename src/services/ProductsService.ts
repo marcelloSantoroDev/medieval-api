@@ -5,13 +5,12 @@ import {
   IProductsAndUsersServicesReturnFormat,
   IProductModel,
 } from '../utils/interfaces';
-import connection from '../models/connection';
 
 export default class ProductsService {
   private ProductsModel: ProductsModel;
 
-  constructor() {
-    this.ProductsModel = new ProductsModel(connection);
+  constructor(productsModel: ProductsModel) {
+    this.ProductsModel = productsModel;
   }
 
   public create = async (product: TProduct)

@@ -1,6 +1,5 @@
 import OrdersModel from '../models/OrdersModel';
 import ProductsModel from '../models/ProductsModel';
-import connection from '../models/connection';
 import { IOrder, IOrderServicesReturnFormat } from '../utils/interfaces';
 import InputsValidation from './validations/InputsValidation';
 
@@ -9,9 +8,9 @@ export default class OrdersService {
 
   private ProductsModel: ProductsModel;
 
-  constructor() {
-    this.OrdersModel = new OrdersModel(connection);
-    this.ProductsModel = new ProductsModel(connection); 
+  constructor(ordersModel: OrdersModel, productsModel: ProductsModel) {
+    this.OrdersModel = ordersModel;
+    this.ProductsModel = productsModel; 
   }
 
   public getAll = async ()

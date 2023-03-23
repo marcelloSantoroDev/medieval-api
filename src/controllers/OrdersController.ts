@@ -9,8 +9,8 @@ import {
 export default class OrdersController {
   private OrdersService: OrdersService;
 
-  constructor() {
-    this.OrdersService = new OrdersService();
+  constructor(ordersService: OrdersService) {
+    this.OrdersService = ordersService;
   }
 
   public getAll = async (_req: Request, res: Response)

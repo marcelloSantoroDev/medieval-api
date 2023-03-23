@@ -5,8 +5,8 @@ import ProductsService from '../services/ProductsService';
 export default class ProductsController {
   private ProductsService: ProductsService;
 
-  constructor() {
-    this.ProductsService = new ProductsService();
+  constructor(productsService: ProductsService) {
+    this.ProductsService = productsService;
   }
 
   public create = async (req: Request, res: Response)
